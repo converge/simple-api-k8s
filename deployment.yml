@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: simple-api
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      name: simple-api
+  template:
+    metadata:
+      labels:
+        name: simple-api
+    spec:
+      containers:
+        - name: application
+          image: joaovanzuita/simple-api-k8s:latest
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 3000
