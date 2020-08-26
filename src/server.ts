@@ -1,27 +1,7 @@
-import express from 'express';
-import fileUpload from 'express-fileupload';
-const app = express();
-const port = 3000;
+import app from './app';
 
-app.use(fileUpload());
+const NODE_PORT=3000;
 
-app.get('/', (req, res) => {
-  res.send('hello k8s world');
-});
+app.listen(NODE_PORT, () => console.log(`server is listening on ${NODE_PORT}`));
 
-app.post('/upload-img', (req, res) => {
-  const files = (req as any).files;
-  console.log(files);
-  return res.status(200).json({
-      'Filename': files.image1.name,
-      'Size': files.image1.size,
-      'mimetype': files.image1.mimetype
-  });
-});
 
-app.listen(port, err => {
-  if (err) {
-    return console.error(err);
-  }
-  return console.log(`server is listening on ${port}`);
-});
